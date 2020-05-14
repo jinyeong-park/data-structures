@@ -6,20 +6,33 @@
 
 // }
 
-class Stack extends Array {
-  peek() {
-      return this[this.length -1];
+class Stack {
+
+  // Array is used to implement stack
+  constructor()
+  {
+      this.items = [];
   }
 
-  isEmpty() {
-      return this.length === 0;
+  // Functions to be implemented
+  // push(item) : Adds an element to the stack
+    push(element) {
+        // push element into the items
+        this.items.push(element);
+    }
+  // pop() : Removes an element from the stack, if the function is call on an empty stack it indicates “Underflow”
+    pop() {
+    // return top most element in the stack
+    // and removes it from the stack
+    // Underflow if stack is empty
+    if (this.items.length == 0)
+        return "Underflow";
+    return this.items.pop();
   }
+  // size()
+   size() {
+    return this.items.length;
+  };
+
 }
 
-const stack = new Stack();
-stack.push(1);
-stack.push(2);
-stack.pop();
-stack.isEmpty();
-
-const stack1 = new Stack(1,2,3,4);

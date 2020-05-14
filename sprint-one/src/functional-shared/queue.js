@@ -5,49 +5,35 @@
 
 // var queueMethods = {};
 
-
-
-
-
-var Queue = function(queueName, comment){
-
-  // You can use object literal notation for `instance` (instead of dot notation),
-  // but then we have to use `this` and we lose the privacy of closure scope
-  // (e.g., `storage` is no longer private), so this kind of sucks.
-  var instance = {
-    name: queueName,
-    annotation: comment,
-    head: 0,
-    tail: 0,
-    storage: {}
+var Queue = function(){
+  var someInstance = {
+    storage: {},
+    first: 0,
+    last: 0,
   };
 
-  // The _.extend() function is provided by the Underscore.js library
-  _.extend(instance, queueMethods);
+  _.extend(someInstance, queueMethods);
 
-  return instance;
+  return someInstance;
 };
 
-// The object below stores methods that could be shared with other classes
 var queueMethods = {
-  enqueue: function(data){
-    this.storage[this.tail] = data;
-    this.tail++;
-    // The tail points to the next EMPTY "spot" for data to be stored
-    // it does NOT point to the last OCCUPIED "spot" in the storage
+  enqueue: function(value) {
+    this.storage[this.last] = value;
+    this.last++;
   },
-  dequeue: function(){
-    if(this.head <= this.tail){  // Check the queue's size
-      var data = this.storage[this.head];
 
-      // Deleting is even more important for queues than for stacks
-      // (memory leaks are a bigger threat for queues)
-      delete this.storage[this.head];
-      this.head++;
-      return data;
+  dequeue: function() {
+    if (this.last > this.first){
+      var trash = this.storage[this.first];
+      delete this.storage[this.first];
+      this.first++;
+      return trash;
     }
   },
-  size: function(){
-    return this.tail - this.head;
+
+  size: function() {
+    return this.last - this.first;
   }
+
 };
