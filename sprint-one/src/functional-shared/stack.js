@@ -8,14 +8,14 @@
 var Stack = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
-  var someInstance = {
+  var instances = {
     storage: {},
     count: 0
   };
 
-  _.extend(someInstance, stackMethods);
+  _.extend(instances, stackMethods);
 
-  return someInstance;
+  return instances;
 };
 
 var stackMethods = {

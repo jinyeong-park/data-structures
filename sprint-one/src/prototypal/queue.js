@@ -7,7 +7,6 @@
 
 var Queue = function() {
   var someInstance = Object.create(queueMethods);
-  someInstance.storage = {};
   someInstance.first = 0;
   someInstance.last = 0;
 
@@ -16,15 +15,15 @@ var Queue = function() {
 
 var queueMethods = {
   enqueue: function(value) {
-    this.storage[this.last] = value;
+    this[this.last] = value;
     this.last++;
   },
   dequeue: function() {
     if (this.last > this.first) {
-      var trash = this.storage[this.first];
-      delete this.storage[this.first];
+      var data = this[this.first];
+      delete this[this.first];
       this.first++;
-      return trash;
+      return data;
     }
 
   },

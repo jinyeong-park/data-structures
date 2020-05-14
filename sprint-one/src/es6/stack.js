@@ -36,3 +36,5 @@ class Stack {
 
 }
 
+//var newStack = new Stack
+
